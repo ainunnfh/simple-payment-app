@@ -126,10 +126,10 @@ const RegistrationForm = () => {
           </form>
         </Form>
 
-        <div className="flex gap-2 items-center justify-center">
-          <span className="text-sm">Sudah punya akun?</span>
+        <div className="flex gap-1 items-center justify-center">
+          <span className="text-sm">Sudah punya akun? login</span>
           <a href="/login-page" className="text-sm font-semibold text-red-600">
-            Masuk
+            di sini
           </a>
         </div>
       </div>

@@ -79,7 +79,7 @@ const LoginForm = () => {
           </form>
         </Form>
 
-        <div className="flex gap-2 items-center justify-center">
+        <div className="flex gap-1 items-center justify-center">
           <span className="text-sm">Belum punya akun? registrasi</span>
           <a
             href="/registration-page"
