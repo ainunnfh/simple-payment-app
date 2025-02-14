@@ -2,7 +2,7 @@ import React from "react";
 
 const Feature = () => {
   return (
-    <div className="flex gap-2 p-6">
+    <div className="flex justify-between p-6 w-full">
       <img src="assets/PBB.png" alt="PBB" />
       <img src="assets/Listrik.png" alt="Listrik" />
       <img src="assets/Pulsa.png" alt="Listrik" />

@@ -2,7 +2,7 @@ import React from "react";
 
 const Promo = () => {
   return (
-    <div className="flex flex-col gap-2 p-6">
+    <div className="flex flex-col p-6 w-full justify-between">
       <div>Temukan promo menarik</div>
       <div className="flex gap-2">
         {[1, 2, 3, 4, 5].map((num) => (
