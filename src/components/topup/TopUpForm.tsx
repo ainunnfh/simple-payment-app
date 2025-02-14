@@ -51,6 +51,10 @@ const TopUpForm = () => {
                         placeholder="Masukkan nominal top up"
                         {...field}
                         className={cn("w-full")}
+                        onChange={(e) =>
+                          form.setValue("nominal", Number(e.target.value))
+                        }
+                        value={form.watch("nominal")}
                       />
                     </FormControl>
                     <FormMessage />
