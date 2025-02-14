@@ -128,12 +128,12 @@ const RegistrationForm = () => {
 
         <div className="flex gap-2 items-center justify-center">
           <span className="text-sm">Sudah punya akun?</span>
-          <a href="/login" className="text-sm font-semibold text-red-600">
+          <a href="/login-page" className="text-sm font-semibold text-red-600">
             Masuk
           </a>
         </div>
       </div>
-      <div className="bg-blue-500 w-1/2">
+      <div className="w-1/2">
         <img
           src="assets/illustrasi-login.png"
           alt=""
