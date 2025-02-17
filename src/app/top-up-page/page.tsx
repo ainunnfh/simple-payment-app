@@ -1,7 +1,10 @@
 import NavBar from "@/components/NavBar";
 import ProfileCard from "@/components/ProfileCard";
 import Saldo from "@/components/Saldo";
+// import TopUpConfirmation from "@/components/topup/TopUpConfirmation";
 import TopUpForm from "@/components/topup/TopUpForm";
+
+// import Notification from "@/components/Notification";
 import React from "react";
 
 const TopUpPage = () => {
@@ -14,6 +17,19 @@ const TopUpPage = () => {
         </div>
         <TopUpForm />
       </div>
+      {/* <Notification
+        nominal={10000}
+        message="Pembayaran listrik prabayar sebesar"
+        type="berhasil"
+        icon="assets/icon-check.png"
+      /> */}
+      {/* <Notification
+        nominal={10000}
+        message="Top Up sebesar"
+        type="gagal"
+        icon="assets/icon-x.png"
+      /> */}
+      {/* <TopUpConfirmation nominal={10000} /> */}
     </NavBar>
   );
 };
