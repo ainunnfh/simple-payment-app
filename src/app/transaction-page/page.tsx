@@ -1,3 +1,4 @@
+"use client";
 import NavBar from "@/components/NavBar";
 import ProfileCard from "@/components/ProfileCard";
 import Saldo from "@/components/Saldo";

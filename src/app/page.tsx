@@ -1,3 +1,4 @@
+"use client";
 import Feature from "@/components/homepage/Feature";
 import Promo from "@/components/homepage/Promo";
 import NavBar from "@/components/NavBar";

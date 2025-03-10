@@ -1,3 +1,4 @@
+"use client";
 import AccountForm from "@/components/account/AccountForm";
 import NavBar from "@/components/NavBar";
 import React from "react";
