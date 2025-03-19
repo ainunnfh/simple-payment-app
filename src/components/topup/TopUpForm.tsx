@@ -14,12 +14,17 @@ import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransaction } from "@/context/TransactionContext";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   nominal: z.number().min(1, "*required"),
 });
 
 const TopUpForm = () => {
+  const { addTransaction } = useTransaction();
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,7 +33,17 @@ const TopUpForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    const date = new Date();
+    addTransaction({
+      id: Date.now(),
+      type: "Top Up",
+      amount: values.nominal,
+      desc: "Top Up Saldo",
+      date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+      time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+      color: "text-green-600",
+    });
+    router.push("/transaction-page");
   }
   return (
     <div className="flex flex-col gap-3 justify-between p-6">
