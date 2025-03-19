@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState } from "react";
 
 interface ITransaction {
+  id: number;
   type: string;
   amount: number;
   desc: string;
   date: string;
   time: string;
-  color?: string;
+  color: string;
 }
 
 interface TransactionContextType {
