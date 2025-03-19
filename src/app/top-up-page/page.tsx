@@ -13,7 +13,7 @@ const TopUpPage = () => {
     <NavBar>
       <div className="mx-auto flex flex-col max-w-[1300px]">
         <div className="flex justify-between p-4">
-          <ProfileCard name="Kristanto Wibowo" />
+          <ProfileCard name="John Doe" />
           <Saldo />
         </div>
         <TopUpForm />
