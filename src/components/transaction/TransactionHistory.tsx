@@ -14,7 +14,7 @@ const TransactionHistory: React.FC<ITransactionHistoryProps> = (props) => {
     <div className="flex flex-col p-2 border-gray-200 border-2 rounded-md">
       <div className="flex justify-between">
         <div className={`font-bold ${props.color}`}>
-          {props.type} Rp. {props.amount}
+          {props.type} Rp. {props.amount.toLocaleString("id-ID")}
         </div>
         <div className="text-xs">{props.desc}</div>
       </div>
