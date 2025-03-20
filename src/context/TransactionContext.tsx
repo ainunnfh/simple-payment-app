@@ -24,7 +24,26 @@ export const TransactionProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const [transactions, setTransactions] = useState([
+    {
+      id: 1,
+      amount: 100000,
+      type: "+",
+      date: "17 Agustus 2024",
+      time: "13:10 WIB",
+      desc: "Top Up Saldo",
+      color: "text-green-500",
+    },
+    {
+      id: 2,
+      amount: 400000,
+      type: "-",
+      date: "17 Agustus 2024",
+      time: "12:10 WIB",
+      desc: "Pulsa Prabayar",
+      color: "text-red-600",
+    },
+  ]);
 
   const addTransaction = (transaction: ITransaction) => {
     setTransactions((prev) => [...prev, transaction]);
