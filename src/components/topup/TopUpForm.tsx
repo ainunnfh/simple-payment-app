@@ -32,6 +32,10 @@ const TopUpForm = () => {
     },
   });
 
+  const handleNominalClick = (nominal: number) => {
+    form.setValue("nominal", nominal); // Update input dengan nominal yang diklik
+  };
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     const date = new Date();
     addTransaction({
@@ -83,12 +87,12 @@ const TopUpForm = () => {
           </Form>
         </div>
         <div className=" flex flex-wrap justify-around gap-1 ">
-          <TopUpNominal nominal={10000} />
-          <TopUpNominal nominal={20000} />
-          <TopUpNominal nominal={50000} />
-          <TopUpNominal nominal={100000} />
-          <TopUpNominal nominal={250000} />
-          <TopUpNominal nominal={500000} />
+          <TopUpNominal nominal={10000} onClick={handleNominalClick} />
+          <TopUpNominal nominal={20000} onClick={handleNominalClick} />
+          <TopUpNominal nominal={50000} onClick={handleNominalClick} />
+          <TopUpNominal nominal={100000} onClick={handleNominalClick} />
+          <TopUpNominal nominal={250000} onClick={handleNominalClick} />
+          <TopUpNominal nominal={500000} onClick={handleNominalClick} />
         </div>
       </div>
     </div>
