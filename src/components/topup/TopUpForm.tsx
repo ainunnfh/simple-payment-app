@@ -36,7 +36,7 @@ const TopUpForm = () => {
     const date = new Date();
     addTransaction({
       id: Date.now(),
-      type: "Top Up",
+      type: "+",
       amount: values.nominal,
       desc: "Top Up Saldo",
       date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
