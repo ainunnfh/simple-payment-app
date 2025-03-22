@@ -35,7 +35,7 @@ const TopUpForm = () => {
   });
 
   const handleNominalClick = (nominal: number) => {
-    form.setValue("nominal", nominal); // Update input dengan nominal yang diklik
+    form.setValue("nominal", nominal);
   };
 
   function onSubmit(values: z.infer<typeof formSchema>) {
