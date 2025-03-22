@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   nominal: z.number().min(1, "*required"),
+  desc: z.string().min(1, "*required"),
 });
 
 const TopUpForm = () => {
@@ -29,6 +30,7 @@ const TopUpForm = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       nominal: 0,
+      desc: "",
     },
   });
 
@@ -42,7 +44,7 @@ const TopUpForm = () => {
       id: Date.now(),
       type: "+",
       amount: values.nominal,
-      desc: "Top Up Saldo",
+      desc: values.desc,
       date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
       time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
       color: "text-green-600",
@@ -74,6 +76,22 @@ const TopUpForm = () => {
                           form.setValue("nominal", Number(e.target.value))
                         }
                         value={form.watch("nominal")}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="desc"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        placeholder="Masukkan catatan top up"
+                        {...field}
+                        className={cn("w-full")}
                       />
                     </FormControl>
                     <FormMessage />
