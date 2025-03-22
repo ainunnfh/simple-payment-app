@@ -13,6 +13,7 @@ interface ITransaction {
 interface TransactionContextType {
   transactions: ITransaction[];
   addTransaction: (transaction: ITransaction) => void;
+  balance: number;
 }
 
 const TransactionContext = createContext<TransactionContextType | undefined>(
@@ -24,33 +25,22 @@ export const TransactionProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [transactions, setTransactions] = useState([
-    {
-      id: 1,
-      amount: 100000,
-      type: "+",
-      date: "17 Agustus 2024",
-      time: "13:10 WIB",
-      desc: "Top Up Saldo",
-      color: "text-green-500",
-    },
-    {
-      id: 2,
-      amount: 400000,
-      type: "-",
-      date: "17 Agustus 2024",
-      time: "12:10 WIB",
-      desc: "Pulsa Prabayar",
-      color: "text-red-600",
-    },
-  ]);
+  const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const [balance, setBalance] = useState(100000);
 
   const addTransaction = (transaction: ITransaction) => {
     setTransactions((prev) => [...prev, transaction]);
+    setBalance((prevBalance) =>
+      transaction.type === "+"
+        ? prevBalance + transaction.amount
+        : prevBalance - transaction.amount
+    );
   };
 
   return (
-    <TransactionContext.Provider value={{ transactions, addTransaction }}>
+    <TransactionContext.Provider
+      value={{ transactions, addTransaction, balance }}
+    >
       {children}
     </TransactionContext.Provider>
   );
