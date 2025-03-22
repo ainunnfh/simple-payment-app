@@ -1,6 +1,8 @@
+import { useTransaction } from "@/context/TransactionContext";
 import React from "react";
 
 const Saldo = () => {
+  const { balance } = useTransaction();
   return (
     <div className="relative">
       <img
@@ -11,7 +13,9 @@ const Saldo = () => {
 
       <div className="absolute inset-0 flex flex-col justify-center  p-4 text-white gap-2">
         <div>Saldo anda</div>
-        <div className="font-bold text-3xl">Rp. 2.000.000</div>
+        <div className="font-bold text-3xl">
+          Rp. {balance.toLocaleString("id-ID")}
+        </div>
         <div className="">Lihat Saldo</div>
       </div>
     </div>
