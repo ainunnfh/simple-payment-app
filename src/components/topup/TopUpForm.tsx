@@ -16,6 +16,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransaction } from "@/context/TransactionContext";
 import { useRouter } from "next/navigation";
+import TopUpConfirmation from "./TopUpConfirmation";
 
 const formSchema = z.object({
   nominal: z.number().min(1, "*required"),
@@ -24,6 +25,8 @@ const formSchema = z.object({
 
 const TopUpForm = () => {
   const [type, setType] = useState("+");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [selectedNominal, setSelectedNominal] = useState(0);
   const { addTransaction } = useTransaction();
   const router = useRouter();
 
@@ -40,6 +43,18 @@ const TopUpForm = () => {
   };
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    const nominal = values.nominal;
+
+    if (!nominal || nominal <= 0) {
+      alert("Masukkan nominal terlebih dahulu!");
+      return;
+    }
+    setSelectedNominal(nominal);
+    setShowConfirmation(true);
+  }
+
+  const handleConfirmTopUp = (values: z.infer<typeof formSchema>) => {
+    form.handleSubmit(onSubmit)();
     const date = new Date();
     addTransaction({
       id: Date.now(),
@@ -50,8 +65,17 @@ const TopUpForm = () => {
       time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
       color: "text-green-600",
     });
+    console.log(
+      `Top Up sebesar: Rp. ${selectedNominal.toLocaleString("id-ID")}`
+    );
+    setShowConfirmation(true);
     router.push("/transaction-page");
-  }
+  };
+
+  const handleCloseModal = () => {
+    setShowConfirmation(false);
+  };
+
   return (
     <div className="flex flex-col gap-3 justify-between p-6">
       <div className="flex flex-col">
@@ -125,6 +149,16 @@ const TopUpForm = () => {
           <TopUpNominal nominal={500000} onClick={handleNominalClick} />
         </div>
       </div>
+      {showConfirmation && (
+        <div className="fixed inset-0 flex justify-center items-center bg-black/50">
+          <TopUpConfirmation
+            type={type}
+            nominal={form.watch("nominal")}
+            onConfirm={() => handleConfirmTopUp(form.getValues())}
+            onClose={handleCloseModal}
+          />
+        </div>
+      )}
     </div>
   );
 };
