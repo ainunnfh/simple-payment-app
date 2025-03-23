@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import TopUpNominal from "./TopUpNominal";
 import {
   Form,
@@ -23,6 +23,7 @@ const formSchema = z.object({
 });
 
 const TopUpForm = () => {
+  const [type, setType] = useState("+");
   const { addTransaction } = useTransaction();
   const router = useRouter();
 
@@ -42,7 +43,7 @@ const TopUpForm = () => {
     const date = new Date();
     addTransaction({
       id: Date.now(),
-      type: "+",
+      type: type,
       amount: values.nominal,
       desc: values.desc,
       date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
@@ -62,6 +63,17 @@ const TopUpForm = () => {
         <div className="w-3/4 flex flex-col gap-3">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <div className="flex flex-col gap-2">
+                <label className="font-semibold">Jenis Transaksi</label>
+                <select
+                  className="p-2 border rounded-md"
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
+                >
+                  <option value="+">Top Up</option>
+                  <option value="-">Bayar</option>
+                </select>
+              </div>
               <FormField
                 control={form.control}
                 name="nominal"
@@ -99,7 +111,7 @@ const TopUpForm = () => {
                 )}
               />
               <Button type="submit" className="w-full bg-red-600">
-                Top Up
+                {type === "+" ? "Top Up" : "Bayar"}
               </Button>
             </form>
           </Form>
