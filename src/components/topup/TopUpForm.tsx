@@ -28,6 +28,7 @@ const TopUpForm = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [selectedNominal, setSelectedNominal] = useState(0);
   const { addTransaction } = useTransaction();
+  const { balance } = useTransaction();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -56,6 +57,10 @@ const TopUpForm = () => {
   const handleConfirmTopUp = (values: z.infer<typeof formSchema>) => {
     form.handleSubmit(onSubmit)();
     const date = new Date();
+    if (type === "-" && selectedNominal > balance) {
+      alert("Saldo tidak mencukupi!");
+      return;
+    }
     addTransaction({
       id: Date.now(),
       type: type,
