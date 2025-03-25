@@ -141,12 +141,13 @@ const TopUpForm = () => {
           </Form>
         </div>
         <div className=" flex flex-wrap justify-around gap-1 ">
-          <TopUpNominal nominal={10000} onClick={handleNominalClick} />
-          <TopUpNominal nominal={20000} onClick={handleNominalClick} />
-          <TopUpNominal nominal={50000} onClick={handleNominalClick} />
-          <TopUpNominal nominal={100000} onClick={handleNominalClick} />
-          <TopUpNominal nominal={250000} onClick={handleNominalClick} />
-          <TopUpNominal nominal={500000} onClick={handleNominalClick} />
+          {[10000, 20000, 50000, 100000, 250000, 500000].map((nominal) => (
+            <TopUpNominal
+              key={nominal}
+              nominal={nominal}
+              onClick={handleNominalClick}
+            />
+          ))}
         </div>
       </div>
       {showConfirmation && (
